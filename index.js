@@ -66,15 +66,11 @@ async function getCURL(url, method = 'GET', headers = {}, body = null, returnJso
 [ #.BALLANCE ] : ${number(infoAkun.result.balance)} AP
 [*] INFORMASI CLAIM TASK:\n`;
 
-
-                    // Get task ID
                     const getTaskID = await getCURL('https://api.agent301.org/getTasks', 'POST', headers, {});
                     if (getTaskID.ok === true) {
                         for (const task of getTaskID.result.data) {
                             if (task.is_claimed === false) {
-                                // Auto claim untuk setiap tugas
                                 if (task.type === 'video') {
-                                    // Loop klaim berdasarkan jumlah yang perlu diklaim
                                     for (let i = task.count; i < task.max_count; i++) {
                                         const claimTask = await getCURL(`https://api.agent301.org/completeTask`, 'POST', headers, { "type": task.type });
                                         
@@ -83,7 +79,7 @@ async function getCURL(url, method = 'GET', headers = {}, body = null, returnJso
                                             logMessage += `[#] CLAIM ${task.title} GET ${number(task.reward)} AP => CLAIM TASK: BERHASIL!! - ${number(getSaldo.result.balance)} AP\n`;
                                         } else {
                                             logMessage += `[#] CLAIM ${task.title} GET ${number(task.reward)} AP => CLAIM TASK: SKIPPED!!\n`;
-                                            break; // Jika klaim gagal, keluar dari loop
+                                            break;
                                         }
                                     }
                                 } else {
@@ -92,19 +88,18 @@ async function getCURL(url, method = 'GET', headers = {}, body = null, returnJso
                                         
                                         if (claimTask.ok === true) {
                                             const getSaldo = await getCURL('https://api.agent301.org/getMe', 'POST', headers, {"referrer_id": 0});
-                                            logMessage += `[#] CLAIM ${task.title} GET ${number(task.reward)} AP => CLAIM TASK: BERHASIL!! - ${number(getSaldo.result.balance)} AP\n`;
+                                            logMessage += `[#] CLAIM ${task.title.toUpperCase()} GET ${number(task.reward)} AP => CLAIM TASK: BERHASIL!! - ${number(getSaldo.result.balance)} AP\n`;
                                         } else {
-                                            logMessage += `[#] CLAIM ${task.title} GET ${number(task.reward)} AP => CLAIM TASK: SKIPPED!!\n`;
+                                            logMessage += `[#] CLAIM ${task.title.toUpperCase()} GET ${number(task.reward)} AP => CLAIM TASK: SKIPPED!!\n`;
                                         }
                                     } catch (error) {
-                                        logMessage += `[!] ERROR CLAIMING TASK ${task.title}: ${error.message}\n`;
+                                        logMessage += `[!] ERROR CLAIMING TASK ${task.title.toUpperCase()}: ${error.message}\n`;
                                     }
                                 }
                             }
                         }
-                    // } else {
-                    // }
-                }else if (infoAkun.ok == false) {
+                        
+                    }else if (infoAkun.ok == false) {
                     logMessage += `[!] ERROR CLAIM TASKS: ${getTaskID.status}\n`;
                 } else{
                     logMessage += `[!] ERROR GETTING TASKS: ${getTaskID.status}\n`;
