@@ -4,6 +4,7 @@ from fake_useragent import UserAgent
 import time
 import json
 
+
 # Fungsi untuk memecah data dan mengambil username dari authorization token atau user data
 def extract_username(authorization):
     try:
