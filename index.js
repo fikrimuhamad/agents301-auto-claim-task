@@ -30,7 +30,7 @@ async function getCURL(url, method = 'GET', headers = {}, body = null, returnJso
 }
 
 (async () => {
-    const dataList = getToken('query.txt');
+    const dataList = getToken('dataAkun.txt');
     
     console.log(`-------------------------------`);
     console.log(` |            MENU            | `);
@@ -38,11 +38,7 @@ async function getCURL(url, method = 'GET', headers = {}, body = null, returnJso
     console.log(`-------------------------------`);
     console.log();
 
-    const delayInput = 1; //delay dalam 24jam
-    const hours = Math.floor(delayInput / 60 / 60);
-    if ( hours === 0 ){ var minutes = Math.floor(delayInput / 60); }else{ var minutes = Math.floor(hours * 60 / 60); }
     const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-
     console.log('[.] MENJALANKAN AUTO CLEAR TASK, DELAY 24 JAM SETELAH CEK ' + dataList.length + ' AKUN...\n');
     while (true) {
         for (let i = 0; i < dataList.length; i += 100) {
@@ -121,7 +117,7 @@ async function getCURL(url, method = 'GET', headers = {}, body = null, returnJso
             await Promise.all(batchPromises);
         }
         console.log(`[${getCurrentTime()}] SEMUA AKUN BERHASIL DIPROSESS, DELAY 24 JAM...`);
-        await delay(delayInput * 87000);
+        await delay(87000);
         console.clear();
         console.log(`[${getCurrentTime()}] MEMULAI AUTO CLAIM ${dataList.length} AKUN...\n`);
     }
