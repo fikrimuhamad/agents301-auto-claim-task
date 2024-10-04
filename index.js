@@ -43,7 +43,7 @@ async function getCURL(url, method = 'GET', headers = {}, body = null, returnJso
     if ( hours === 0 ){ var minutes = Math.floor(delayInput / 60); }else{ var minutes = Math.floor(hours * 60 / 60); }
     const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-    console.log('[.] MENJALANKAN AUTO CLEAR TASK, DELAY ' + hours + ' JAM SETELAH CEK ' + dataList.length + ' AKUN...\n');
+    console.log('[.] MENJALANKAN AUTO CLEAR TASK, DELAY 24 JAM SETELAH CEK ' + dataList.length + ' AKUN...\n');
     while (true) {
         for (let i = 0; i < dataList.length; i += 100) {
             const batch = dataList.slice(i, i + 100);
