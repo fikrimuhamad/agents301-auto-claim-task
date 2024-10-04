@@ -30,7 +30,7 @@ async function getCURL(url, method = 'GET', headers = {}, body = null, returnJso
 }
 
 (async () => {
-    const dataList = getToken('dataAkun.txt');
+    const dataList = getToken('query.txt');
     
     console.log(`-------------------------------`);
     console.log(` |            MENU            | `);
