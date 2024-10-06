@@ -19,22 +19,26 @@
      ```
 
 3. **Jalankan Script**:
-   - Jalankan perintah berikut untuk memulai bot:
+   - Jika Anda menggunakan JavaScript / node, Jalankan perintah berikut untuk memulai bot:
      ```bash
-     python agents.py
+     node index / node index.js
      ```
    - Jika Anda menggunakan Python 3, gunakan perintah ini:
      ```bash
-     python3 agents.py
+     python agents.py / python3 agents.py
      ```
 
-4. **Install Dependency**: 
+5. **Install Dependency**: 
+   - Jika Anda menggunakan JS kode langsung saja jalankan perintah berikut ini:
+     ```bash
+     npm install
+     ```
    - Jika Anda baru pertama kali menginstall Python atau library, jalankan perintah berikut untuk menginstall library `requests` dan `fake_useragent`:
      ```bash
      pip install requests fake_useragent
      ```
 
-5. **Auto Claim & Delay**:
+6. **Auto Claim & Delay**:
    - Bot akan secara otomatis menjalankan klaim task setiap 24 jam.
    - Jika Anda ingin mengubah durasi delay, silakan edit nilai pada fungsi `time.sleep(86400)` di kode.
 
